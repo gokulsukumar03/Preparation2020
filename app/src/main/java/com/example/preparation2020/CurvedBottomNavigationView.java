@@ -11,7 +11,9 @@ public class CurvedBottomNavigationView extends BottomNavigationView {
     private Path mPath;
     private Paint mPaint;
 
-    /** the CURVE_CIRCLE_RADIUS represent the radius of the fab button */
+    /**
+     * the CURVE_CIRCLE_RADIUS represent the radius of the fab button
+     */
     private final int CURVE_CIRCLE_RADIUS = 256 / 2;
     // the coordinates of the first curve
     private Point mFirstCurveStartPoint = new Point();
@@ -28,7 +30,9 @@ public class CurvedBottomNavigationView extends BottomNavigationView {
     private int mNavigationBarWidth;
     private int mNavigationBarHeight;
     private final int TOP_ADJUSTMENT = 100;
-    private final int BOTTOM_ADJUSTMENT = 60;
+    private final int MIDDLE_ADJUSTMENT = 80;
+    private final int BOTTOM_ADJUSTMENT = 20;
+
 
     public CurvedBottomNavigationView(Context context) {
         super(context);
@@ -67,23 +71,23 @@ public class CurvedBottomNavigationView extends BottomNavigationView {
         mNavigationBarWidth = getWidth();
         mNavigationBarHeight = getHeight();
         // the coordinates (x,y) of the start point before curve
-        mFirstCurveStartPoint.set((mNavigationBarWidth / 2) - (CURVE_CIRCLE_RADIUS * 2) - (CURVE_CIRCLE_RADIUS / 3) +TOP_ADJUSTMENT, 0);
+        mFirstCurveStartPoint.set((mNavigationBarWidth / 2) - (CURVE_CIRCLE_RADIUS * 2) - (CURVE_CIRCLE_RADIUS / 3) + TOP_ADJUSTMENT, 0);
         // the coordinates (x,y) of the end point after curve
-        mFirstCurveEndPoint.set(mNavigationBarWidth / 2, CURVE_CIRCLE_RADIUS + (CURVE_CIRCLE_RADIUS / 4) );
+        mFirstCurveEndPoint.set(mNavigationBarWidth / 2 , CURVE_CIRCLE_RADIUS + (CURVE_CIRCLE_RADIUS / 4));
         // same thing for the second curve
         mSecondCurveStartPoint = mFirstCurveEndPoint;
         mSecondCurveStartPoint.set(mNavigationBarWidth / 2, CURVE_CIRCLE_RADIUS + (CURVE_CIRCLE_RADIUS / 4));
 
 
-        mSecondCurveEndPoint.set((mNavigationBarWidth / 2 ) + (CURVE_CIRCLE_RADIUS * 2) + (CURVE_CIRCLE_RADIUS / 3) -TOP_ADJUSTMENT, 0);
+        mSecondCurveEndPoint.set((mNavigationBarWidth / 2) + (CURVE_CIRCLE_RADIUS * 2) + (CURVE_CIRCLE_RADIUS / 3) - TOP_ADJUSTMENT, 0);
 
         // the coordinates (x,y)  of the 1st control point on a cubic curve
-        mFirstCurveControlPoint1.set(mFirstCurveStartPoint.x + CURVE_CIRCLE_RADIUS + (CURVE_CIRCLE_RADIUS / 4)  , mFirstCurveStartPoint.y);
+        mFirstCurveControlPoint1.set(mFirstCurveStartPoint.x + CURVE_CIRCLE_RADIUS + (CURVE_CIRCLE_RADIUS / 4), mFirstCurveStartPoint.y);
         // the coordinates (x,y)  of the 2nd control point on a cubic curve
-        mFirstCurveControlPoint2.set(mFirstCurveEndPoint.x - (CURVE_CIRCLE_RADIUS * 2) + CURVE_CIRCLE_RADIUS - BOTTOM_ADJUSTMENT, mFirstCurveEndPoint.y);
+        mFirstCurveControlPoint2.set(mFirstCurveEndPoint.x - (CURVE_CIRCLE_RADIUS * 2) + CURVE_CIRCLE_RADIUS - MIDDLE_ADJUSTMENT, mFirstCurveEndPoint.y +BOTTOM_ADJUSTMENT);
 
-        mSecondCurveControlPoint1.set(mSecondCurveStartPoint.x + (CURVE_CIRCLE_RADIUS * 2) - CURVE_CIRCLE_RADIUS +BOTTOM_ADJUSTMENT, mSecondCurveStartPoint.y);
-        mSecondCurveControlPoint2.set(mSecondCurveEndPoint.x - (CURVE_CIRCLE_RADIUS + (CURVE_CIRCLE_RADIUS / 4)) , mSecondCurveEndPoint.y);
+        mSecondCurveControlPoint1.set(mSecondCurveStartPoint.x + (CURVE_CIRCLE_RADIUS * 2) - CURVE_CIRCLE_RADIUS + MIDDLE_ADJUSTMENT, mSecondCurveStartPoint.y +BOTTOM_ADJUSTMENT);
+        mSecondCurveControlPoint2.set(mSecondCurveEndPoint.x - (CURVE_CIRCLE_RADIUS + (CURVE_CIRCLE_RADIUS / 4)), mSecondCurveEndPoint.y);
 
         mPath.reset();
         mPath.moveTo(0, 0);
@@ -131,19 +135,19 @@ public class CurvedBottomNavigationView extends BottomNavigationView {
          D/!!!!: 1018   5
          D/!!!!: 0      6*/
 
-        Log.d("!!!!   "   , mFirstCurveControlPoint1.x + "    1");
-        Log.d("!!!!   "   , mFirstCurveControlPoint1.y + "    2");
-        Log.d("!!!!   "   , mFirstCurveControlPoint2.x + "    3 ");
-        Log.d("!!!!   "   , mFirstCurveControlPoint2.y + "    4");
-        Log.d("!!!!   "   , mFirstCurveEndPoint.x + "    5");
-        Log.d("!!!!   "   , mFirstCurveEndPoint.y + "    6");
+        Log.d("!!!!   ", mFirstCurveControlPoint1.x + "    1");
+        Log.d("!!!!   ", mFirstCurveControlPoint1.y + "    2");
+        Log.d("!!!!   ", mFirstCurveControlPoint2.x + "    3 ");
+        Log.d("!!!!   ", mFirstCurveControlPoint2.y + "    4");
+        Log.d("!!!!   ", mFirstCurveEndPoint.x + "    5");
+        Log.d("!!!!   ", mFirstCurveEndPoint.y + "    6");
 
-        Log.d("!!!!   "   , mSecondCurveControlPoint1.x + "    1");
-        Log.d("!!!!   "   , mSecondCurveControlPoint1.y + "    2");
-        Log.d("!!!!   "   , mSecondCurveControlPoint2.x + "    3 ");
-        Log.d("!!!!   "   , mSecondCurveControlPoint2.y + "    4");
-        Log.d("!!!!   "   , mSecondCurveEndPoint.x + "    5");
-        Log.d("!!!!   "   , mSecondCurveEndPoint.y + "    6");
+        Log.d("!!!!   ", mSecondCurveControlPoint1.x + "    1");
+        Log.d("!!!!   ", mSecondCurveControlPoint1.y + "    2");
+        Log.d("!!!!   ", mSecondCurveControlPoint2.x + "    3 ");
+        Log.d("!!!!   ", mSecondCurveControlPoint2.y + "    4");
+        Log.d("!!!!   ", mSecondCurveEndPoint.x + "    5");
+        Log.d("!!!!   ", mSecondCurveEndPoint.y + "    6");
 
         mPath.lineTo(mNavigationBarWidth, 0);
         mPath.lineTo(mNavigationBarWidth, mNavigationBarHeight);
@@ -158,7 +162,6 @@ public class CurvedBottomNavigationView extends BottomNavigationView {
         super.onDraw(canvas);
         canvas.drawPath(mPath, mPaint);
     }
-
 
 
 }
